@@ -1,5 +1,6 @@
 from storage import *
 from time import sleep
+from calculos import *
 
 
 while True:
@@ -7,10 +8,15 @@ while True:
     resp = selctoption()
 
     if resp == 1:
-        print('Calcular')
-        sleep(2)
+        result = calcular_imc()
+        if result is None:
+            sleep(1)
+            continue
+        else:
+            print(f'{result}\n Dado Salvo em Registros !')
+            sleep(2)
     elif resp == 2:
-        print('Historico')
+        historico()
         sleep(2)
     else :
         print('Encerrando ....')
