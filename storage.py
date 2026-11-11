@@ -1,6 +1,11 @@
+# frameworks usados
 from pathlib import Path
+
 import json
+
 from datetime import datetime
+
+from calculos import *
 
 arq_json= Path('registropessoas.json')
 
@@ -72,7 +77,7 @@ def DateRef():
 
 # cria um dicionario e recebe dados do usuario
 def co_dados():
-    arquivo = carregar_arquivo()
+
     dados = dict()
     while True:
         try:
@@ -88,8 +93,6 @@ def co_dados():
         dados['peso']= leia_float('> Digite seu peso: ')
         dados['altura']= leia_float('> Digite sua altura: ')
         dados['data'] = DateRef()
-        salvar_arquivo()
-        
         return dados
 
 # função que cria menu de infomaçoes 
@@ -117,7 +120,7 @@ def selctoption():
             else :
                 return opcao
 
-
+# retorna os dados do arquivo json
 def historico():
     titulo('Historico/Registros', 2)
     arquivo = carregar_arquivo()
@@ -126,3 +129,13 @@ def historico():
             print(f'{k} : {v}')
         quebralinha()
 
+def registrar_imc():
+    arquivo = carregar_arquivo()
+    usuario = co_dados()
+    imc = calcular_imc(usuario["peso"] , usuario["altura"])
+    classificacao = clas_imc(imc)
+    usuario['IMC'] = float(f'{imc : .2f}')
+    usuario['Class'] = classificacao
+    arquivo.append(usuario)
+    salvar_arquivo(arquivo)
+    return imc , classificacao
