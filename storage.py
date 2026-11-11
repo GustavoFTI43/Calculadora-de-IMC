@@ -72,11 +72,12 @@ def DateRef():
 
 # cria um dicionario e recebe dados do usuario
 def co_dados():
+    arquivo = carregar_arquivo()
     dados = dict()
     while True:
         try:
             nome = str(input('> Digite seu Nome: ')).strip().title()
-            if nome.isalpha():
+            if nome.replace(' ' , '').isalpha():
                 dados['nome'] = nome
             else :
                 print(f'o nome {nome} não é valido tente novamente !')
@@ -87,6 +88,8 @@ def co_dados():
         dados['peso']= leia_float('> Digite seu peso: ')
         dados['altura']= leia_float('> Digite sua altura: ')
         dados['data'] = DateRef()
+        salvar_arquivo()
+        
         return dados
 
 # função que cria menu de infomaçoes 

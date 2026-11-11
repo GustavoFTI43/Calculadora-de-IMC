@@ -23,21 +23,6 @@ def clas_imc(imc):
         resultado = 'Obesidade Grau III'
         return resultado
 
-def calcular_imc():
-    arquivo = carregar_arquivo()
-    dados = co_dados()
-    while True:
-        try:
-            imc = dados["peso"] / (dados["altura"] ** 2)
-            dados["IMC"] = round (imc , 2)
-            dados['classificação'] = clas_imc(imc)
-        except ZeroDivisionError:
-            print('Preencha os dados corretamente pois não é possivel realizar divisão por zero')
-            break
-        except TypeError:
-            print('Preencha todos os dados para poder continuar .')
-            break
-        else :
-            arquivo.append(dados)
-            salvar_arquivo(arquivo)
-            return f'IMC: {imc: .2f} - {dados["classificação"]}'
+def calcular_imc(peso , altura):
+    imc = peso / (altura**2)
+    return imc

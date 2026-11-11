@@ -6,9 +6,10 @@ from calculos import *
 while True:
     menu(['Calcular IMC' , 'Ver Historio' , 'Sair'])
     resp = selctoption()
+    usuario = co_dados()
 
     if resp == 1:
-        result = calcular_imc()
+        result = calcular_imc(usuario["peso"] , usuario["altura"])
         if result is None:
             sleep(1)
             continue
