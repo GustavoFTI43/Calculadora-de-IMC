@@ -138,4 +138,4 @@ def registrar_imc():
     usuario['Class'] = classificacao
     arquivo.append(usuario)
     salvar_arquivo(arquivo)
-    return imc , classificacao
+    return usuario['IMC'], classificacao

@@ -10,12 +10,13 @@ while True:
 
     if resp == 1:
         resut = registrar_imc()
+        imc , classificacao = resut
 
         if imc is None:
             sleep(1)
             continue
         else:
-            print(f'{imc : .2f}\n{classificacao}\nDado Salvo em Registros !')
+            print(f'\nIMC : {imc : .2f}\nClassificação : {classificacao}\nDado Salvo em Registros !')
             sleep(2)
     elif resp == 2:
         historico()
